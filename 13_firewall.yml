@@ -1,0 +1,20 @@
+---
+- name: Modify Firewall
+  hosts: all
+  become: true
+  become_user: root
+
+  tasks:
+  - name: Enable a service in firewalldd
+    firewalld:
+      port: 80/tcp
+      permanent: true
+      state: enabled
+    notify:
+      - Reload firewalld
+
+  handlers:
+  - name: Reload firewalld
+    service: 
+      name: firewalld
+      state: reload

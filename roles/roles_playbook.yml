@@ -1,0 +1,6 @@
+---
+- name: Install nginx and Firewall changes
+  hosts: all
+  roles:
+    - nginx_setup
+    - fwd_service

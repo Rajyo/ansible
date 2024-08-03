@@ -1,0 +1,17 @@
+---
+- name: Installing Httpd
+  hosts: all
+  become: true
+
+  tasks: 
+  - name: Install httpd on Redhat
+    yum:
+      name: httpd
+      state: present
+    when: ansible_os_family == "Redhat"
+
+  - name: Install nginx on Ubuntu
+    apt:
+      name: nginx
+      state: present
+    when: ansible_os_family == "Debian"

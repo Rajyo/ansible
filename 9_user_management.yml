@@ -1,0 +1,37 @@
+---
+- name: User Management
+  hosts: all
+  become: true
+
+  tasks: 
+  - name: User Creation
+    user:
+      name: admin
+      comment: adding new user for DEV team
+      shell: /bin/bash
+      groups: DEV,admin
+    tags: u-create
+  
+  - name: User Creation for Deletion
+    user:
+      name: "{{ item }}" 
+      comment: creating user for deleting soon after
+      shell: /bin/bash
+    tags: u-create
+    loop:
+      - Kendrick
+      - Kanye
+      - Travis
+
+  - name: User Deletion
+    user:
+      name: "{{ item }}"
+      comment: deleting user
+      state: absent
+      remove: yes  
+    tags: u-delete      
+    loop:
+      - Kendrick
+      - Kanye
+      - Travis
+

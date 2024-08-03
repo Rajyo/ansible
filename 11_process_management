@@ -1,0 +1,14 @@
+---
+- name: Process Management
+  hosts: all
+  become: true
+  become_user: root
+
+  tasks: 
+  - name: Find a process and kill it
+    ignore_errors: yes
+    shell: "pgrep nginx | xargs kill"
+
+  - name: Start a nginx process
+    shell: "systemctl start nginx"
+

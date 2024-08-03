@@ -1,0 +1,14 @@
+---
+- name: Download Files from the Internet
+  hosts: all
+  become: true
+  become_user: root
+
+  tasks: 
+  - name: Download node.js
+    get_url:
+      url: https://nodejs.org/dist/v20.16.0/node-v20.16.0-linux-x64.tar.xz
+      dest: /home/ansibleHosts/node/
+      owner: ansibleHosts
+      group: ansibleHosts
+      mode: 0777

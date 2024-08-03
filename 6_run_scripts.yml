@@ -1,0 +1,12 @@
+---
+- name: Run all Scripts
+  hosts: all
+  become: true
+  become_user: root
+
+  tasks:
+  - name: Run script
+    shell: ./test.sh >> test.log
+    args:
+      chdir: /home/ansibleHosts/scripts/
+      creates: test.log

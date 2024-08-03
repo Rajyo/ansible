@@ -1,0 +1,36 @@
+---
+- name: Files and its Permissions
+  hosts: all
+  become: true
+  become_user: root
+
+  tasks:
+  - name: Creating a File
+    file: 
+      path: /home/ansibleHosts/newFile.txt
+      state: touch
+      owner: ansibleHosts
+      group: ansibleHosts
+      mode: u=rwx,g=rw,o=r
+
+
+  - name: Creating a Directory
+    file:
+      path: /home/ansibleHosts/newFolder
+      state: directory
+
+  - name: Change Permissions of a Directory
+    file: 
+      path: /home/ansibleHosts/newFolder
+      mode: u=r,g=rw
+
+
+  - name: Create a file for Deletion
+    file:
+      path: /home/ansibleHosts/trialFile
+      state: touch
+
+  - name: Delete above created file
+    file:
+      path: /home/ansibleHosts/trialFile
+      state: absent

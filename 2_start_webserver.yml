@@ -1,0 +1,19 @@
+---
+- name: Install and Start the Service
+  hosts: all
+  become: true
+  become_user: root
+  vars:
+    - app: nginx
+
+  tasks:
+  - name: Installing Nginx
+    apt: 
+      name: "{{ app }}"
+      state: latest
+      update_cache: true
+  - name: Starting the Nginx Service
+    service: 
+      name: "{{ app }}"
+      state: started
+      enabled: true

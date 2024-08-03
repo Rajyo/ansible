@@ -1,0 +1,13 @@
+---
+- name: Delete Cron Job
+  hosts: all
+  become: true
+  become_user: root
+
+  tasks: 
+  - name: Remove Cron Job
+    cron:
+      name: Run Trial Script
+      state: absent
+      user: ansibleHosts
+

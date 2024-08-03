@@ -1,0 +1,17 @@
+---
+- name: Cron Job Setup
+  hosts: all
+  become: true
+  become_user: root
+
+  tasks:
+  - name: Add Cron Job
+    cron:
+      name: Run Trial Script
+      minute: 14
+      hour: 11
+      day: 3
+      month: 8
+      weekday: "*"
+      user: ansibleHosts
+      job: /home/ansibleHosts/scripts/cronJob.sh
